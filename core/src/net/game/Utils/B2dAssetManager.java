@@ -13,8 +13,7 @@ public class B2dAssetManager {
     public final AssetManager manager = new AssetManager();
 
     // Textures
-    public final String playerImages = "images/Nick/Nick.pack";
-    public final String mainImages = "images/testLvl/test.pack";
+    public final String gameImages = "images/testLvl/game.pack";
     public final String loadingImages = "loading/load.pack";
     public final String menuImages = "images/menu/menu.pack";
     // Sounds
@@ -61,8 +60,7 @@ public class B2dAssetManager {
     }
 
     public void queueAddImages(){
-        manager.load(playerImages, TextureAtlas.class);
-        manager.load(mainImages, TextureAtlas.class);
+        manager.load(gameImages, TextureAtlas.class);
         manager.load(menuImages, TextureAtlas.class);
     }
 

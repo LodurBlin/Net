@@ -3,6 +3,7 @@ package net.game.Utils;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -20,11 +21,7 @@ public class LevelFactory {
     public World world;
     private PooledEngine engine;
     public int currentLevel = 0;
-    private TextureRegion floorTex;
-    private TextureRegion enemyTex;
-    private TextureRegion waterTex;
-    private TextureRegion platformTex;
-    private TextureRegion bulletTex;
+    private TextureRegion floorTex, enemyTex, waterTex, platformTex, bulletTex, seekerTex;
     private TextureAtlas atlas;
     private OpenSimplexNoise openSim;
     private ParticleEffectManager pem;
@@ -33,14 +30,15 @@ public class LevelFactory {
 
     public LevelFactory(PooledEngine en, B2dAssetManager assMan){
         engine = en;
-        /*
-        this.atlas = assMan.manager.get("images/testLvl/test.pack", TextureAtlas.class);;
-        floorTex = atlas.findRegion("reallybadlydrawndirt");
-        enemyTex = atlas.findRegion("waterdrop");
-        waterTex  = atlas.findRegion("water");
-        bulletTex = DFUtils.makeTextureRegion(10,10,"444444FF");
-        platformTex = atlas.findRegion("platform");
+        this.atlas = assMan.manager.get(assMan.gameImages, TextureAtlas.class);;
 
+        floorTex = atlas.findRegion("tile_0");
+        enemyTex = atlas.findRegion("Peppa");
+        seekerTex  = atlas.findRegion("Masha");
+        waterTex  = atlas.findRegion("Vrag_1");
+        bulletTex = DFUtils.makeTextureRegion(10,10,"444444FF");
+        platformTex = atlas.findRegion("tile_0");
+        /*
         pem = new ParticleEffectManager();
         pem.addParticleEffect(ParticleEffectManager.FIRE, assMan.manager.get(assMan.fireEffect, ParticleEffect.class),1f/128f);
         pem.addParticleEffect(ParticleEffectManager.WATER, assMan.manager.get(assMan.waterEffect,ParticleEffect.class),1f/8f);
@@ -113,7 +111,7 @@ public class LevelFactory {
 
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         texture.region = platformTex;
-        //entity.add(texture);
+        entity.add(texture);
 
         TypeComponent type = engine.createComponent(TypeComponent.class);
         type.type = TypeComponent.SCENERY;
@@ -137,7 +135,7 @@ public class LevelFactory {
 
 
         position.position.set(46,32,-10);
-        //texture.region = atlas.findRegion("skybg");
+        texture.region = atlas.findRegion("neon_background");
         type.type = TypeComponent.SCENERY;
         b2dbody.body = bodyFactory.makeBoxPolyBody(23, 17, 100, 100, BodyFactory.STONE, BodyType.StaticBody);
 
@@ -162,12 +160,12 @@ public class LevelFactory {
         //make it a sensor so not to impede movement
         bodyFactory.makeAllFixturesSensors(b2dbody.body);
         stateCom.set(StateComponent.STATE_NORMAL);
-        /*
+
         AnimationComponent animCom = engine.createComponent(AnimationComponent.class);
-		Animation anim = new Animation(0.03f,atlas.findRegions("pad"));
+		Animation anim = new Animation(0.03f,atlas.findRegions("tile"));
 		anim.setPlayMode(Animation.PlayMode.LOOP);
 		animCom.animations.put(StateComponent.STATE_NORMAL, anim);
-         */
+
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         texture.region = platformTex;
 
@@ -180,8 +178,8 @@ public class LevelFactory {
 
         b2dbody.body.setUserData(entity);
         entity.add(b2dbody);
-        //entity.add(texture);
-        //entity.add(animCom);
+        entity.add(texture);
+        entity.add(animCom);
         entity.add(stateCom);
         entity.add(type);
         engine.addEntity(entity);
@@ -197,13 +195,13 @@ public class LevelFactory {
         TypeComponent type = engine.createComponent(TypeComponent.class);
 
         position.position.set(20,0,0);
-        //texture.region = floorTex;
+        texture.region = floorTex;
         texture.offsetY = -0.4f;
         type.type = TypeComponent.SCENERY;
         b2dbody.body = bodyFactory.makeBoxPolyBody(20, -16, 46, 32, BodyFactory.STONE, BodyType.StaticBody);
 
         entity.add(b2dbody);
-        //entity.add(texture);
+        entity.add(texture);
         entity.add(position);
         entity.add(type);
 
@@ -230,7 +228,7 @@ public class LevelFactory {
         entity.add(colComp);
         entity.add(b2dbody);
         entity.add(position);
-        //entity.add(texture);
+        entity.add(texture);
         entity.add(enemy);
         entity.add(type);
 
@@ -258,8 +256,8 @@ public class LevelFactory {
         b2dbody.body = bodyFactory.makeCirclePolyBody(10,1,1, BodyFactory.STONE, BodyType.DynamicBody,true);
         b2dbody.body.setSleepingAllowed(false); // don't allow unit to sleep or it wil sleep through
         // set object position (x,y,z) z used to define draw order 0 first drawn
-        /*
-        Animation anim = new Animation(0.1f,atlas.findRegions("flame_a"));
+
+        Animation anim = new Animation(0.1f,atlas.findRegions("Nick_walk"));
         anim.setPlayMode(Animation.PlayMode.LOOP);
         animCom.animations.put(StateComponent.STATE_NORMAL, anim);
         animCom.animations.put(StateComponent.STATE_MOVING, anim);
@@ -267,10 +265,9 @@ public class LevelFactory {
         animCom.animations.put(StateComponent.STATE_FALLING, anim);
         animCom.animations.put(StateComponent.STATE_HIT, anim);
 
-         */
 
         position.position.set(10,1,0);
-        //texture.region = atlas.findRegion("player");
+        texture.region = atlas.findRegion("Nick_front");
         texture.offsetY = 0.5f;
         type.type = TypeComponent.PLAYER;
         stateCom.set(StateComponent.STATE_NORMAL);
@@ -280,8 +277,8 @@ public class LevelFactory {
 
         entity.add(b2dbody);
         entity.add(position);
-        //entity.add(texture);
-        //entity.add(animCom);
+        entity.add(texture);
+        entity.add(animCom);
         entity.add(player);
         entity.add(colComp);
         entity.add(type);
@@ -309,7 +306,7 @@ public class LevelFactory {
         b2dbody.body.setLinearDamping(0.3f); // setting linear dampening so the enemy slows down in our box2d world(or it can float on forever)
 
         position.position.set(x,y,0);
-        //texture.region = atlas.findRegion("player");
+        texture.region = seekerTex;
         type.type = TypeComponent.ENEMY;
         stateCom.set(StateComponent.STATE_NORMAL);
         b2dbody.body.setUserData(entity);
@@ -323,7 +320,7 @@ public class LevelFactory {
 
         entity.add(b2dbody);
         entity.add(position);
-        //entity.add(texture);
+        entity.add(texture);
         entity.add(colComp);
         entity.add(type);
         entity.add(enemy);
@@ -354,7 +351,7 @@ public class LevelFactory {
 
             entity.add(b2dbody);
             entity.add(position);
-            //entity.add(texture);
+            entity.add(texture);
             entity.add(type);
             entity.add(wallComp);
             b2dbody.body.setUserData(entity);
@@ -375,11 +372,11 @@ public class LevelFactory {
         AnimationComponent animCom = engine.createComponent(AnimationComponent.class);
         StateComponent stateCom = engine.createComponent(StateComponent.class);
 
-        /*
-        Animation anim = new Animation(0.3f,atlas.findRegions("water"));
+
+        Animation anim = new Animation(0.3f,atlas.findRegions("tile"));
 		anim.setPlayMode(Animation.PlayMode.LOOP);
 		animCom.animations.put(0, anim);
-         */
+
         type.type = TypeComponent.ENEMY;
         texture.region = waterTex;
         texture.offsetY = 1;
@@ -387,9 +384,10 @@ public class LevelFactory {
         position.position.set(20,-15,0);
         entity.add(b2dbody);
         entity.add(position);
-        //entity.add(texture);
+        entity.add(texture);
         entity.add(type);
         entity.add(waterFloor);
+        entity.add(animCom);
 
         b2dbody.body.setUserData(entity);
 
@@ -417,13 +415,10 @@ public class LevelFactory {
         b2dbody.body.setBullet(true); // increase physics computation to limit body travelling through other objects
         bodyFactory.makeAllFixturesSensors(b2dbody.body); // make bullets sensors so they don't move player
         position.position.set(x,y,0);
-        /*
         texture.region = bulletTex;
-        Animation anim = new Animation(0.05f,DFUtils.spriteSheetToFrames(atlas.findRegion("FlameSpriteAnimation"), 7, 1));
+        Animation anim = new Animation(0.05f,DFUtils.spriteSheetToFrames(atlas.findRegion("Vrag"), 7, 1));
         anim.setPlayMode(Animation.PlayMode.LOOP);
         animCom.animations.put(0, anim);
-
-         */
 
         type.type = TypeComponent.BULLET;
         b2dbody.body.setUserData(entity);
@@ -437,14 +432,12 @@ public class LevelFactory {
         entity.add(colComp);
         entity.add(b2dbody);
         entity.add(position);
-        //entity.add(texture);
-        //entity.add(animCom);
+        entity.add(texture);
+        entity.add(animCom);
         entity.add(stateCom);
         entity.add(type);
 
         engine.addEntity(entity);
-
-
 
         return entity;
     }

@@ -1,0 +1,166 @@
+
+game.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+neon_background
+  rotate: false
+  xy: 1, 530
+  size: 2000, 1334
+  orig: 2000, 1334
+  offset: 0, 0
+  index: -1
+tileset
+  rotate: false
+  xy: 1, 368
+  size: 96, 160
+  orig: 96, 160
+  offset: 0, 0
+  index: -1
+Nick_jump
+  rotate: false
+  xy: 1, 281
+  size: 46, 85
+  orig: 46, 85
+  offset: 0, 0
+  index: -1
+Nick_front
+  rotate: false
+  xy: 2003, 1772
+  size: 34, 92
+  orig: 34, 92
+  offset: 0, 0
+  index: -1
+Nick_walk
+  rotate: false
+  xy: 99, 437
+  size: 32, 91
+  orig: 32, 91
+  offset: 0, 0
+  index: 4
+Nick_walk
+  rotate: false
+  xy: 1, 188
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 5
+Nick_walk
+  rotate: false
+  xy: 2003, 1679
+  size: 29, 91
+  orig: 29, 91
+  offset: 0, 0
+  index: 0
+Nick_walk
+  rotate: false
+  xy: 133, 440
+  size: 32, 88
+  orig: 32, 88
+  offset: 0, 0
+  index: 1
+Nick_walk
+  rotate: false
+  xy: 1, 95
+  size: 29, 91
+  orig: 29, 91
+  offset: 0, 0
+  index: 2
+Nick_walk
+  rotate: false
+  xy: 2003, 1586
+  size: 29, 91
+  orig: 29, 91
+  offset: 0, 0
+  index: 3
+Nick_profile
+  rotate: false
+  xy: 1, 1
+  size: 26, 92
+  orig: 26, 92
+  offset: 0, 0
+  index: -1
+Nick_prejump
+  rotate: false
+  xy: 167, 440
+  size: 27, 88
+  orig: 27, 88
+  offset: 0, 0
+  index: -1
+Masha
+  rotate: false
+  xy: 49, 300
+  size: 32, 66
+  orig: 32, 66
+  offset: 0, 0
+  index: -1
+Masha
+  rotate: false
+  xy: 99, 369
+  size: 32, 66
+  orig: 32, 66
+  offset: 0, 0
+  index: 0
+Masha
+  rotate: false
+  xy: 133, 372
+  size: 32, 66
+  orig: 32, 66
+  offset: 0, 0
+  index: 1
+Peppa
+  rotate: false
+  xy: 196, 465
+  size: 32, 63
+  orig: 32, 63
+  offset: 0, 0
+  index: -1
+Peppa
+  rotate: false
+  xy: 230, 465
+  size: 32, 63
+  orig: 32, 63
+  offset: 0, 0
+  index: 0
+Peppa
+  rotate: false
+  xy: 264, 465
+  size: 32, 63
+  orig: 32, 63
+  offset: 0, 0
+  index: 1
+Vrag
+  rotate: false
+  xy: 298, 494
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: 1
+Vrag
+  rotate: false
+  xy: 334, 494
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: 2
+tile
+  rotate: false
+  xy: 370, 496
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 0
+tile
+  rotate: false
+  xy: 404, 496
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+tile
+  rotate: false
+  xy: 438, 496
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 2
