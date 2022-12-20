@@ -1,4 +1,6 @@
 package net.game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import net.game.Screens.*;
 import net.game.Screens.Levels.*;
@@ -49,6 +51,12 @@ public class CoolGame extends Game {
 
         //playingSong.play();
 
+    }
+
+    @Override
+    public void render () {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) Gdx.app.exit();
+        super.render();
     }
 
     public void changeScreen(int screen){

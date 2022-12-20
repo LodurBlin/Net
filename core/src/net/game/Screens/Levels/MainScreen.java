@@ -6,12 +6,9 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import net.game.Controllers.Keyboard;
 import net.game.CoolGame;
@@ -102,6 +99,10 @@ public class MainScreen implements Screen {
             DFUtils.log("YOU DIED : back to menu you go!");
             parent.lastScore = (int) pc.cam.position.y;
             parent.changeScreen(ENDGAME);
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)){
+            parent.changeScreen(MENU);
+            //music.pause();
         }
 
     }
