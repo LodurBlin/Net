@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 
 public class EnemyComponent implements Component, Poolable{
 
-    public static enum Type { DROPLET, CLOUD };
+    public enum Type { DROPLET, CLOUD }
 
     public boolean isDead = false;
     public float xPosCenter = -1;
@@ -15,7 +15,7 @@ public class EnemyComponent implements Component, Poolable{
     public Type enemyType = Type.DROPLET;
     @Override
     public void reset() {
-        shootDelay = 0.5f;
+        shootDelay = 1.5f;
         timeSinceLastShot = 0f;
         enemyType = Type.DROPLET;
         isDead = false;

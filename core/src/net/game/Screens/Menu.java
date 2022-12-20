@@ -43,11 +43,17 @@ public class Menu implements Screen {
 
     @Override
     public void show() {
+        // debug to skip menu
+        //DFUtils.log("To the game");
+        //parent.changeScreen(Box2DTutorial.APPLICATION);
+
+        Gdx.input.setInputProcessor(stage);
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
+        table.setBackground(new TiledDrawable(background));
 
-        TextButton level0 = new TextButton("level0", skin);
+        TextButton level0 = new TextButton("New game", skin);
         //TextButton level1 = new TextButton("level1", skin);
         TextButton exit = new TextButton("Exit", skin);
         TextButton preferences = new TextButton("Preferences", skin);
@@ -57,11 +63,12 @@ public class Menu implements Screen {
         table.row().pad(10, 0, 10, 0);
         //table.add(level1).fillX().uniformX();
         //table.row();
-        table.add(exit).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
         table.add(preferences).fillX().uniformX();
+        table.row().pad(10, 0, 10, 0);
+        table.add(exit).fillX().uniformX();
 
-        table.setBackground(new TiledDrawable(background));
+
+
 
         //button listeners
 
@@ -72,6 +79,7 @@ public class Menu implements Screen {
             }
         });
 
+
         level0.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -80,18 +88,6 @@ public class Menu implements Screen {
 
             }
         });
-
-        /*
-        level1.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                music.pause();
-                game.changeScreen(TEST);
-
-            }
-        });
-
-         */
 
         preferences.addListener(new ChangeListener() {
             @Override
@@ -134,9 +130,6 @@ public class Menu implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
-        game.dispose();
-        skin.dispose();
-        music.dispose();
     }
 
 }

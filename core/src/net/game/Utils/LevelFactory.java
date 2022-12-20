@@ -5,11 +5,11 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import net.game.Entity.Components.*;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import net.game.SimplexNoise.OpenSimplexNoise;
@@ -54,7 +54,7 @@ public class LevelFactory {
         world.setContactListener(new B2dContactListener());
         bodyFactory = BodyFactory.getInstance(world);
 
-        openSim = new OpenSimplexNoise(MathUtils.random(2000l));
+        openSim = new OpenSimplexNoise(MathUtils.random(2000L));
 
 
 
@@ -460,5 +460,14 @@ public class LevelFactory {
         engine.addEntity(entity);
         return entity;
 
+    }
+    public void resetWorld() {
+        currentLevel = 0;
+        openSim = new OpenSimplexNoise(MathUtils.random(2000L));
+        Array<Body> bods = new Array<Body>();
+        world.getBodies(bods);
+        for(Body bod:bods){
+            world.destroyBody(bod);
+        }
     }
 }

@@ -1,4 +1,6 @@
 package net.game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import net.game.Screens.*;
 import net.game.Screens.Levels.*;
@@ -51,6 +53,12 @@ public class CoolGame extends Game {
 
     }
 
+    @Override
+    public void render () {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) Gdx.app.exit();
+        super.render();
+    }
+
     public void changeScreen(int screen){
         switch(screen){
             case MENU:
@@ -64,6 +72,11 @@ public class CoolGame extends Game {
             case MAIN:
                 // always make new game screen so game can't start midway
                 mainScreen = new MainScreen(this);
+                if(mainScreen == null){
+                    mainScreen = new MainScreen(this);
+                }else{
+                    mainScreen.resetWorld();
+                }
                 this.setScreen(mainScreen);
                 break;
             case ENDGAME:

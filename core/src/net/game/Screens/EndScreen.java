@@ -23,10 +23,7 @@ import static net.game.Utils.Constants.MENU;
 public class EndScreen implements Screen {
 
     private CoolGame gam;
-    private Skin skin;
     private Stage stage;
-    private TextureAtlas atlas;
-    private AtlasRegion background;
 
     public EndScreen(CoolGame CoolGame){
         gam = CoolGame;
@@ -35,9 +32,9 @@ public class EndScreen implements Screen {
     @Override
     public void show() {
         // get skin
-        skin = gam.assMan.manager.get("skin/glassy-ui.json");
-        atlas = gam.assMan.manager.get("images/menu/menu.atlas");
-        background = atlas.findRegion("background");
+        Skin skin = gam.assMan.manager.get("skin/glassy-ui.json");
+        TextureAtlas atlas = gam.assMan.manager.get("images/menu/menu.pack");
+        //background = atlas.findRegion("background");
 
         // create button to go back to manu
         TextButton menuButton = new TextButton("Back", skin, "small");
@@ -58,16 +55,16 @@ public class EndScreen implements Screen {
         // create table to layout iutems we will add
         Table table = new Table();
         table.setFillParent(true);
-        table.setDebug(true);
-        table.setBackground(new TiledDrawable(background));
+        //table.setDebug(true);
+        //table.setBackground(new TiledDrawable(background));
 
         //create a Labels showing the score and some credits
         Label labelScore = new Label("You score was "+gam.lastScore+" Meters", skin);
         Label labelCredits = new Label("Credits:", skin);
         Label labelCredits1 = new Label("Game Design by", skin);
-        Label labelCredits2 = new Label("gamedevelopment.blog", skin);
+        Label labelCredits2 = new Label("Kukaracha company", skin);
         Label labelCredits3 = new Label("Art Design by", skin);
-        Label labelCredits4 = new Label("Random stuff off the internet", skin);
+        Label labelCredits4 = new Label("Irena Pinchuk and random stuff from the Internet", skin);
 
         // add items to table
         table.add(labelScore).colspan(2);
@@ -95,7 +92,7 @@ public class EndScreen implements Screen {
 
         stage.act();
         stage.draw();
-        gam.changeScreen(MENU);
+        //gam.changeScreen(MENU);
     }
 
     @Override

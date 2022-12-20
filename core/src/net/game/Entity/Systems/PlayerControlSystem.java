@@ -32,27 +32,31 @@ public class PlayerControlSystem extends IteratingSystem{
         StateComponent state = sm.get(entity);
         PlayerComponent player = pm.get(entity);
 
-        System.out.println(state.get());
         player.cam.position.y = b2body.body.getPosition().y;
 
 
         if(b2body.body.getLinearVelocity().y > 0 && state.get() != StateComponent.STATE_FALLING){
             state.set(StateComponent.STATE_FALLING);
+            System.out.println("setting to Falling");
         }
 
         if(b2body.body.getLinearVelocity().y == 0){
             if(state.get() == StateComponent.STATE_FALLING){
                 state.set(StateComponent.STATE_NORMAL);
+                System.out.println("setting to normal");
             }
             if(b2body.body.getLinearVelocity().x != 0 && state.get() != StateComponent.STATE_MOVING){
                 state.set(StateComponent.STATE_MOVING);
+                System.out.println("setting to moving");
             }
         }
 
         // make player teleport higher
         if(player.onSpring){
             //b2body.body.applyLinearImpulse(0, 175f, b2body.body.getWorldCenter().x,b2body.body.getWorldCenter().y, true);
+
             //lvlFactory.makeParticleEffect(ParticleEffectManager.SMOKE, b2body.body.getPosition().x, b2body.body.getPosition().y);
+
             // move player
             b2body.body.setTransform(b2body.body.getPosition().x, b2body.body.getPosition().y+ 10, b2body.body.getAngle());
             //state.set(StateComponent.STATE_JUMPING);
@@ -77,6 +81,7 @@ public class PlayerControlSystem extends IteratingSystem{
             state.set(StateComponent.STATE_JUMPING);
             player.onPlatform = false;
             player.onSpring = false;
+            System.out.println("setting to jumping");
         }
 
         if(controller.down){

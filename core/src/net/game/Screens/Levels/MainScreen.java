@@ -6,12 +6,9 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import net.game.Controllers.Keyboard;
 import net.game.CoolGame;
@@ -66,9 +63,9 @@ public class MainScreen implements Screen {
         engine.addSystem(new PlayerControlSystem(controller));
         player = lvlFactory.createPlayer(cam);
         engine.addSystem(new EnemySystem(lvlFactory));
-        engine.addSystem(new WallSystem(player));
-        engine.addSystem(new WaterFloorSystem(player));
-        engine.addSystem(new BulletSystem(player));
+        engine.addSystem(new WallSystem(lvlFactory));
+        engine.addSystem(new WaterFloorSystem(lvlFactory));
+        engine.addSystem(new BulletSystem(lvlFactory));
         engine.addSystem(new LevelGenerationSystem(lvlFactory));
 
 
@@ -103,6 +100,10 @@ public class MainScreen implements Screen {
             parent.lastScore = (int) pc.cam.position.y;
             parent.changeScreen(ENDGAME);
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)){
+            parent.changeScreen(MENU);
+            //music.pause();
+        }
 
     }
 
@@ -127,5 +128,29 @@ public class MainScreen implements Screen {
     public void dispose() {
         sb.dispose();
         engine.clearPools();
+    }
+    public void resetWorld(){
+        System.out.println("Resetting world");
+        engine.removeAllEntities();
+        lvlFactory.resetWorld();
+
+        player = lvlFactory.createPlayer(cam);
+        lvlFactory.createFloor();
+        lvlFactory.createWaterFloor();
+
+        int wallWidth = (int) (1*RenderingSystem.PPM);
+        int wallHeight = (int) (60*RenderingSystem.PPM);
+        TextureRegion wallRegion = DFUtils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
+        lvlFactory.createWalls(wallRegion); //TODO make some damn images for this stuff
+
+        // reset controller controls (fixes bug where controller stuck on directrion if died in that position)
+        controller.left = false;
+        controller.right = false;
+        controller.up = false;
+        controller.down = false;
+        controller.isMouse1Down = false;
+        controller.isMouse2Down = false;
+        controller.isMouse3Down = false;
+
     }
 }

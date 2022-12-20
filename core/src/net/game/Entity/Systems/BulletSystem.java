@@ -6,14 +6,15 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import net.game.Entity.Components.B2dBodyComponent;
 import net.game.Entity.Components.BulletComponent;
 import net.game.Entity.Components.Mapper;
+import net.game.Utils.LevelFactory;
 
 public class BulletSystem extends IteratingSystem{
-    private Entity player;
+    private LevelFactory lvlFactory;
 
     @SuppressWarnings("unchecked")
-    public BulletSystem(Entity player){
+    public BulletSystem(LevelFactory lvlFactory){
         super(Family.all(BulletComponent.class).get());
-        this.player = player;
+        this.lvlFactory = lvlFactory;
     }
 
     @Override
@@ -26,7 +27,7 @@ public class BulletSystem extends IteratingSystem{
         b2body.body.setLinearVelocity(bullet.xVel, bullet.yVel);
 
         // get player pos
-        B2dBodyComponent playerBodyComp = Mapper.b2dCom.get(player);
+        B2dBodyComponent playerBodyComp = Mapper.b2dCom.get(lvlFactory.player);
         float px = playerBodyComp.body.getPosition().x;
         float py = playerBodyComp.body.getPosition().y;
 

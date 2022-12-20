@@ -1,5 +1,6 @@
 package net.game.Screens;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -142,6 +143,10 @@ public class PreferencesScreen implements Screen{
         // tell our stage to do actions and draw itself
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)){
+            game.changeScreen(MENU);
+            //music.pause();
+        }
 
     }
 
