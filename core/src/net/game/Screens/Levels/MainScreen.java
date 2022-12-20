@@ -38,8 +38,6 @@ public class MainScreen implements Screen {
         parent = box2dTutorial;
         //parent.assMan.queueAddSounds();
         //parent.assMan.manager.finishLoading();
-        //ping = parent.assMan.manager.get("sounds/ping.wav",Sound.class);
-        //boing = parent.assMan.manager.get("sounds/boing.wav",Sound.class);
         controller = new Keyboard();
         engine = new PooledEngine();
         // next guide - changed this to atlas
@@ -55,7 +53,7 @@ public class MainScreen implements Screen {
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new PhysicsSystem(lvlFactory.world));
         engine.addSystem(renderingSystem);
-        // not a fan of splitting batch into rendering and particles but I like the separation of the systems
+        // not a fan of splitting batch into rendering and particles ,but I like the separation of the systems
         engine.addSystem(particleSystem); // particle get drawns on top so should be placed after normal rendering
         engine.addSystem(new PhysicsDebugSystem(lvlFactory.world, renderingSystem.getCamera()));
         engine.addSystem(new CollisionSystem());
@@ -71,7 +69,7 @@ public class MainScreen implements Screen {
 
         lvlFactory.createFloor();
         lvlFactory.createWaterFloor();
-        //lvlFactory.createSeeker(Mapper.sCom.get(player),20,15);
+        lvlFactory.createBackground();
 
 
         int wallWidth = (int) (1*RenderingSystem.PPM);

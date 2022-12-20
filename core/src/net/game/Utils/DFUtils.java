@@ -134,6 +134,8 @@ public class DFUtils {
         TextureRegion[][] tmp = region.split(region.getRegionWidth() / FRAME_COLS,
                 region.getRegionHeight() / FRAME_ROWS);
 
+
+
         // compact 2d array to 1d array
         TextureRegion[] frames = new TextureRegion[FRAME_COLS * FRAME_ROWS];
         int index = 0;
