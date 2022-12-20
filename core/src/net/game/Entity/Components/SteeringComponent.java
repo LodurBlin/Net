@@ -34,7 +34,7 @@ public class SteeringComponent implements Steerable<Vector2>, Component, Pool.Po
     private static final SteeringAcceleration<Vector2> steeringOutput = new SteeringAcceleration<Vector2>(new Vector2()); // this is the actual steering vactor for our unit
     private float boundingRadius = 1f;   // the minimum radius size for a circle required to cover whole object
     private boolean tagged = true;		// This is a generic flag utilized in a variety of ways. (never used this myself)
-    private boolean independentFacing = false; // defines if the entity can move in a direction other than the way it faces)
+    private boolean independentFacing = true; // defines if the entity can move in a direction other than the way it faces)
 
     public boolean isIndependentFacing () {
         return independentFacing;

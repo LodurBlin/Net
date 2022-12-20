@@ -127,15 +127,47 @@ public class LevelFactory {
 
     }
 
+    public void createBackground(){
+        Entity entity = engine.createEntity();
+        B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
+        TransformComponent position = engine.createComponent(TransformComponent.class);
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        TypeComponent type = engine.createComponent(TypeComponent.class);
+
+
+
+        position.position.set(46,32,-10);
+        //texture.region = atlas.findRegion("skybg");
+        type.type = TypeComponent.SCENERY;
+        b2dbody.body = bodyFactory.makeBoxPolyBody(23, 17, 100, 100, BodyFactory.STONE, BodyType.StaticBody);
+
+        bodyFactory.makeAllFixturesSensors(b2dbody.body);
+
+
+        entity.add(texture);
+        entity.add(position);
+        entity.add(type);
+        entity.add(b2dbody);
+
+        b2dbody.body.setUserData(entity);
+
+        engine.addEntity(entity);
+    }
+
     public Entity createBouncyPlatform(float x, float y){
         Entity entity = engine.createEntity();
-        // create body component
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
+        StateComponent stateCom = engine.createComponent(StateComponent.class);
         b2dbody.body = bodyFactory.makeBoxPolyBody(x, y, 1f, 1f, BodyFactory.STONE, BodyType.StaticBody);
         //make it a sensor so not to impede movement
         bodyFactory.makeAllFixturesSensors(b2dbody.body);
-
-        // give it a texture..todo get another texture and anim for springy action
+        stateCom.set(StateComponent.STATE_NORMAL);
+        /*
+        AnimationComponent animCom = engine.createComponent(AnimationComponent.class);
+		Animation anim = new Animation(0.03f,atlas.findRegions("pad"));
+		anim.setPlayMode(Animation.PlayMode.LOOP);
+		animCom.animations.put(StateComponent.STATE_NORMAL, anim);
+         */
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         texture.region = platformTex;
 
@@ -149,6 +181,8 @@ public class LevelFactory {
         b2dbody.body.setUserData(entity);
         entity.add(b2dbody);
         //entity.add(texture);
+        //entity.add(animCom);
+        entity.add(stateCom);
         entity.add(type);
         engine.addEntity(entity);
 
@@ -164,6 +198,7 @@ public class LevelFactory {
 
         position.position.set(20,0,0);
         //texture.region = floorTex;
+        texture.offsetY = -0.4f;
         type.type = TypeComponent.SCENERY;
         b2dbody.body = bodyFactory.makeBoxPolyBody(20, -16, 46, 32, BodyFactory.STONE, BodyType.StaticBody);
 
@@ -221,6 +256,7 @@ public class LevelFactory {
 
         player.cam = cam;
         b2dbody.body = bodyFactory.makeCirclePolyBody(10,1,1, BodyFactory.STONE, BodyType.DynamicBody,true);
+        b2dbody.body.setSleepingAllowed(false); // don't allow unit to sleep or it wil sleep through
         // set object position (x,y,z) z used to define draw order 0 first drawn
         /*
         Animation anim = new Animation(0.1f,atlas.findRegions("flame_a"));
@@ -235,6 +271,7 @@ public class LevelFactory {
 
         position.position.set(10,1,0);
         //texture.region = atlas.findRegion("player");
+        texture.offsetY = 0.5f;
         type.type = TypeComponent.PLAYER;
         stateCom.set(StateComponent.STATE_NORMAL);
         b2dbody.body.setUserData(entity);
@@ -254,6 +291,48 @@ public class LevelFactory {
         engine.addEntity(entity);
         this.player = entity;
         return entity;
+    }
+    public Entity createSeeker(float x, float y) {
+        Entity entity = engine.createEntity();
+        B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
+        TransformComponent position = engine.createComponent(TransformComponent.class);
+        TextureComponent texture = engine.createComponent(TextureComponent.class);
+        CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
+        TypeComponent type = engine.createComponent(TypeComponent.class);
+        StateComponent stateCom = engine.createComponent(StateComponent.class);
+        EnemyComponent enemy = engine.createComponent(EnemyComponent.class);
+        SteeringComponent scom = engine.createComponent(SteeringComponent.class);
+
+
+        b2dbody.body = bodyFactory.makeCirclePolyBody(x,y,1, BodyFactory.STONE, BodyType.DynamicBody,true);
+        b2dbody.body.setGravityScale(0f);  // no gravity for our floating enemy
+        b2dbody.body.setLinearDamping(0.3f); // setting linear dampening so the enemy slows down in our box2d world(or it can float on forever)
+
+        position.position.set(x,y,0);
+        //texture.region = atlas.findRegion("player");
+        type.type = TypeComponent.ENEMY;
+        stateCom.set(StateComponent.STATE_NORMAL);
+        b2dbody.body.setUserData(entity);
+        // bodyFactory.makeAllFixturesSensors(b2dbody.body); // seeker  should fly about not fall
+        scom.body = b2dbody.body;
+        enemy.enemyType = EnemyComponent.Type.CLOUD;
+
+        // set out steering behaviour
+        scom.steeringBehavior  = SteeringPresets.getWander(scom);
+        scom.currentMode = SteeringComponent.SteeringState.WANDER;
+
+        entity.add(b2dbody);
+        entity.add(position);
+        //entity.add(texture);
+        entity.add(colComp);
+        entity.add(type);
+        entity.add(enemy);
+        entity.add(stateCom);
+        entity.add(scom);
+
+        engine.addEntity(entity);
+        return entity;
+
     }
 
     public void createWalls(TextureRegion tex){
@@ -285,10 +364,7 @@ public class LevelFactory {
     }
 
 
-    /**
-     * Creates the water entity that steadily moves upwards towards player
-     * @return
-     */
+    //Creates the water entity that steadily moves upwards towards player
     public Entity createWaterFloor(){
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
@@ -296,9 +372,17 @@ public class LevelFactory {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
         WaterFloorComponent waterFloor = engine.createComponent(WaterFloorComponent.class);
+        AnimationComponent animCom = engine.createComponent(AnimationComponent.class);
+        StateComponent stateCom = engine.createComponent(StateComponent.class);
 
+        /*
+        Animation anim = new Animation(0.3f,atlas.findRegions("water"));
+		anim.setPlayMode(Animation.PlayMode.LOOP);
+		animCom.animations.put(0, anim);
+         */
         type.type = TypeComponent.ENEMY;
         texture.region = waterTex;
+        texture.offsetY = 1;
         b2dbody.body = bodyFactory.makeBoxPolyBody(20,-40,40,44, BodyFactory.STONE, BodyType.KinematicBody,true);
         position.position.set(20,-15,0);
         entity.add(b2dbody);
@@ -418,49 +502,6 @@ public class LevelFactory {
         engine.removeEntity(ent);
     }
 
-
-    public Entity createSeeker(float x, float y) {
-        Entity entity = engine.createEntity();
-        B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
-        TransformComponent position = engine.createComponent(TransformComponent.class);
-        TextureComponent texture = engine.createComponent(TextureComponent.class);
-        CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
-        TypeComponent type = engine.createComponent(TypeComponent.class);
-        StateComponent stateCom = engine.createComponent(StateComponent.class);
-        EnemyComponent enemy = engine.createComponent(EnemyComponent.class);
-        SteeringComponent scom = engine.createComponent(SteeringComponent.class);
-
-
-        b2dbody.body = bodyFactory.makeCirclePolyBody(x,y,1, BodyFactory.STONE, BodyType.DynamicBody,true);
-        b2dbody.body.setGravityScale(0f);  // no gravity for our floating enemy
-        b2dbody.body.setLinearDamping(0.3f); // setting linear dampening so the enemy slows down in our box2d world(or it can float on forever)
-
-        position.position.set(x,y,0);
-        //texture.region = atlas.findRegion("player");
-        type.type = TypeComponent.ENEMY;
-        stateCom.set(StateComponent.STATE_NORMAL);
-        b2dbody.body.setUserData(entity);
-        // bodyFactory.makeAllFixturesSensors(b2dbody.body); // seeker  should fly about not fall
-        scom.body = b2dbody.body;
-        enemy.enemyType = EnemyComponent.Type.CLOUD;
-
-        // set out steering behaviour
-        scom.steeringBehavior  = SteeringPresets.getWander(scom);
-        scom.currentMode = SteeringComponent.SteeringState.WANDER;
-
-        entity.add(b2dbody);
-        entity.add(position);
-        //entity.add(texture);
-        entity.add(colComp);
-        entity.add(type);
-        entity.add(enemy);
-        entity.add(stateCom);
-        entity.add(scom);
-
-        engine.addEntity(entity);
-        return entity;
-
-    }
     public void resetWorld() {
         currentLevel = 0;
         openSim = new OpenSimplexNoise(MathUtils.random(2000L));
