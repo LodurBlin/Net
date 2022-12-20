@@ -1,0 +1,45 @@
+
+load.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+fire
+  rotate: false
+  xy: 1, 35
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: -1
+dot
+  rotate: false
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 0
+dot
+  rotate: false
+  xy: 803, 803
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: 1
+
+load2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bar
+  rotate: false
+  xy: 1, 1
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+Title
+  rotate: false
+  xy: 403, 81
+  size: 320, 320
+  orig: 320, 320
+  offset: 0, 0
+  index: -1
