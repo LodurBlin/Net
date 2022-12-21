@@ -12,11 +12,6 @@ import static net.game.Utils.Constants.*;
 
 
 public class CoolGame extends Game {
-    //TODO PART DONE(-clamp) add walls on side to stop player going too far (clamp)
-    //TODO PART DONE add enemy and enemy generation
-    //TODO add obstacles
-    //DONE add boosts
-    //DONE(not pretty yet) add water that moves up at speed to encourage player to go faster
     //TODO add remove body from world code
     //TODO remove items off screen
     //TODO make enemies die if shot and fall offscreen(off screen should remove from abouve task)
@@ -59,8 +54,8 @@ public class CoolGame extends Game {
         super.render();
     }
 
-    public void changeScreen(int screen){
-        switch(screen){
+    public void changeScreen(Screens s){
+        switch(s){
             case MENU:
                 if(menuScreen == null) menuScreen = new Menu(this);
                 this.setScreen(menuScreen);

@@ -17,7 +17,7 @@ import net.game.Entity.Systems.*;
 import net.game.Utils.DFUtils;
 import net.game.Utils.LevelFactory;
 
-import static net.game.Utils.Constants.*;
+import static net.game.Utils.Constants.Screens.*;
 
 
 public class MainScreen implements Screen {

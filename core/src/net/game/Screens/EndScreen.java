@@ -18,7 +18,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import net.game.CoolGame;
 import net.game.Utils.DFUtils;
 
-import static net.game.Utils.Constants.MENU;
+import static net.game.Utils.Constants.Screens.MENU;
+
 
 public class EndScreen implements Screen {
 

@@ -1,6 +1,6 @@
 package net.game.Screens;
 import net.game.CoolGame;
-import static net.game.Utils.Constants.*;
+import static net.game.Utils.Constants.Screens.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

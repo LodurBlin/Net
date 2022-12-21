@@ -2,7 +2,7 @@ package net.game.Screens;
 import net.game.CoolGame;
 import net.game.Sprites.LoadingBar;
 
-import static net.game.Utils.Constants.MENU;
+import static net.game.Utils.Constants.Screens.MENU;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;

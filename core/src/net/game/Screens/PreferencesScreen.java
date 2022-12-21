@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import net.game.CoolGame;
 
-import static net.game.Utils.Constants.MENU;
+import static net.game.Utils.Constants.Screens.MENU;
 
 public class PreferencesScreen implements Screen{
 
