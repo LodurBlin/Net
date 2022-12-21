@@ -53,7 +53,7 @@ public class MainScreen implements Screen {
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new PhysicsSystem(lvlFactory.world));
         engine.addSystem(renderingSystem);
-        // not a fan of splitting batch into rendering and particles ,but I like the separation of the systems
+        // not a fan of splitting batch into rendering and particles, but I like the separation of the systems
         engine.addSystem(particleSystem); // particle get drawns on top so should be placed after normal rendering
         engine.addSystem(new PhysicsDebugSystem(lvlFactory.world, renderingSystem.getCamera()));
         engine.addSystem(new CollisionSystem());

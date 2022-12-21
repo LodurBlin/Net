@@ -223,6 +223,7 @@ public class LevelFactory {
         CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
 
         b2dbody.body = bodyFactory.makeBoxPolyBody(x, y, 2f, 4f, BodyFactory.STONE, BodyType.KinematicBody,true);
+        //b2dbody.body = bodyFactory.makeCirclePolyBody(x,y,1, BodyFactory.STONE, BodyType.KinematicBody,true);
         position.position.set(x,y,0);
         texture.region = tex;
         enemy.xPosCenter = x;

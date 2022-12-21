@@ -77,6 +77,7 @@ public class EnemySystem extends IteratingSystem{
                     //do shoot
                     Vector2 aim = DFUtils.aimTo(bodyCom.body.getPosition(), b2Player.body.getPosition());
                     aim.scl(3);
+
                     levelFactory.createBullet(bodyCom.body.getPosition().x,
                             bodyCom.body.getPosition().y,
                             aim.x,
