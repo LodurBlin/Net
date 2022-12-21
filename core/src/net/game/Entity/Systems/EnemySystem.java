@@ -36,7 +36,7 @@ public class EnemySystem extends IteratingSystem{
         B2dBodyComponent bodyCom = bodm.get(entity);	// get B2dBodyComponent
 
         if(enemyCom.enemyType == Type.DROPLET){
-            // get distance of enemy from its original start position (pad center)
+            // получает расстояние до врага от его исходной начальной позиции (центр платформы)
             float distFromOrig = Math.abs(enemyCom.xPosCenter - bodyCom.body.getPosition().x);
 
             // if distance > 1 swap direction
@@ -53,37 +53,38 @@ public class EnemySystem extends IteratingSystem{
             B2dBodyComponent b2Player = Mapper.b2dCom.get(levelFactory.player);
             B2dBodyComponent b2Enemy = Mapper.b2dCom.get(entity);
 
+            //расстояние между врагом и игроком
             float distance = b2Player.body.getPosition().dst(b2Enemy.body.getPosition());
             //System.out.println(distance);
-            SteeringComponent scom = Mapper.sCom.get(entity);
+            SteeringComponent scom = Mapper.sCom.get(entity); //рулевое управление врагом
 
-            if(distance < 3 && scom.currentMode != SteeringComponent.SteeringState.FLEE){
+            if(distance < 3 && scom.currentMode != SteeringComponent.SteeringState.FLEE){ //враг не летит и расстояние маленькое
                 scom.steeringBehavior = SteeringPresets.getFlee(Mapper.sCom.get(entity),Mapper.sCom.get(levelFactory.player));
-                scom.currentMode = SteeringComponent.SteeringState.FLEE;
-            }else if(distance > 3 && distance < 10 && scom.currentMode != SteeringComponent.SteeringState.ARRIVE){
-                scom.steeringBehavior = SteeringPresets.getArrive(Mapper.sCom.get(entity),Mapper.sCom.get(levelFactory.player));
-                scom.currentMode = SteeringComponent.SteeringState.ARRIVE;
-            }else if(distance > 15 && scom.currentMode != SteeringComponent.SteeringState.WANDER){
+                scom.currentMode = SteeringComponent.SteeringState.FLEE; //враг полетел
+            }else if(distance > 3 && distance < 10 && scom.currentMode != SteeringComponent.SteeringState.ARRIVE){ //расстояние среднее и враг не прибыл
+                scom.steeringBehavior = SteeringPresets.getArrive(Mapper.sCom.get(entity),Mapper.sCom.get(levelFactory.player)); //враг движется к игроку
+                scom.currentMode = SteeringComponent.SteeringState.ARRIVE; //враг прибывает
+            }else if(distance > 15 && scom.currentMode != SteeringComponent.SteeringState.WANDER){ //расстояние большое и враг не в поисках
                 scom.steeringBehavior  = SteeringPresets.getWander(Mapper.sCom.get(entity));
-                scom.currentMode = SteeringComponent.SteeringState.WANDER;
+                scom.currentMode = SteeringComponent.SteeringState.WANDER; //враг в поисках
             }
 
 
 
             // should enemy shoot
-            if(scom.currentMode == SteeringComponent.SteeringState.ARRIVE){
+            if(scom.currentMode == SteeringComponent.SteeringState.ARRIVE){ //если враг прибыл
                 // enemy is following
-                if(enemyCom.timeSinceLastShot >= enemyCom.shootDelay){
+                if(enemyCom.timeSinceLastShot >= enemyCom.shootDelay){ //кулдаун на стрельбу
                     //do shoot
                     Vector2 aim = DFUtils.aimTo(bodyCom.body.getPosition(), b2Player.body.getPosition());
-                    aim.scl(3);
+                    aim.scl(3); //получили координаты игрока
 
                     levelFactory.createBullet(bodyCom.body.getPosition().x,
                             bodyCom.body.getPosition().y,
                             aim.x,
                             aim.y,
-                            BulletComponent.Owner.ENEMY);
-                    //reset timer
+                            BulletComponent.Owner.ENEMY); //создание пули
+                    //обноуляем кулдаун
                     enemyCom.timeSinceLastShot = 0;
                 }
             }

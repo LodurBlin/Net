@@ -16,6 +16,8 @@ import com.badlogic.gdx.math.MathUtils;
 import net.game.SimplexNoise.OpenSimplexNoise;
 import net.game.ai.SteeringPresets;
 
+import static net.game.Utils.Constants.*;
+
 public class LevelFactory {
     private BodyFactory bodyFactory;
     public World world;
@@ -80,23 +82,23 @@ public class LevelFactory {
         return (float)openSim.eval(height, level);
     }
 
-    private void generateSingleColumn(int i){
-        int offset = 10 * i;
-        int range = 15;
+    private void generateSingleColumn(int i){ //СОЗДАЁТ ВСЕ ВАЩЕ
+        int offset = 20 * i; //Отвечает за ширину генерации сущностей
+        int range = 50; //Отвечает за высоту генерации сущностей
         if(genNForL(i,currentLevel) > -0.5f){
-            createPlatform(genNForL(i * 100,currentLevel) * range + offset ,currentLevel * 2);
+            createPlatform(genNForL(i * 100,currentLevel) * range + offset ,currentLevel * 2); //создаёт платформы
             if(genNForL(i * 200,currentLevel) > 0.3f){
-                // add bouncy platform
+                // создает пружинистые платформы
                 createBouncyPlatform(genNForL(i * 100,currentLevel) * range + offset,currentLevel * 2);
             }
-            // only make enemies above level 7 (stops insta deaths)
+            // создаёт обычных врагов с опред уровня
             if(currentLevel > 7){
                 if(genNForL(i * 300,currentLevel) > 0.2f){
                     // add an enemy
                     createEnemy(enemyTex,genNForL(i * 100,currentLevel) * range + offset,currentLevel * 2 + 1);
                 }
             }
-            //only make cloud enemies above level 10 (stops insta deaths)
+            //создает летающих врагов начиная с определенного уровня, чтобы избежать моментальных смертей
             if(currentLevel > 0){
                 if(genNForL(i * 400,currentLevel) > 0.3f){
                     // add a cloud enemy
@@ -176,7 +178,7 @@ public class LevelFactory {
         position.position.set(46,32,-10);
         texture.region = atlas.findRegion("neon_background");
         type.type = TypeComponent.SCENERY;
-        b2dbody.body = bodyFactory.makeBoxPolyBody(23, 17, 100, 100, BodyFactory.STONE, BodyType.StaticBody);
+        b2dbody.body = bodyFactory.makeBoxPolyBody(screenWidth/PPM/2, screenHeight/PPM/2, screenWidth, screenHeight, BodyFactory.STONE, BodyType.StaticBody);
 
         bodyFactory.makeAllFixturesSensors(b2dbody.body);
 
@@ -261,7 +263,7 @@ public class LevelFactory {
         type.type = TypeComponent.ENEMY;
         stateCom.set(StateComponent.STATE_NORMAL);
         b2dbody.body.setUserData(entity);
-        // bodyFactory.makeAllFixturesSensors(b2dbody.body); // seeker  should fly about not fall
+        bodyFactory.makeAllFixturesSensors(b2dbody.body); // seeker  should fly about not fall
         scom.body = b2dbody.body;
         enemy.enemyType = EnemyComponent.Type.CLOUD;
 
@@ -298,22 +300,23 @@ public class LevelFactory {
 
 
         player.cam = cam;
-        b2dbody.body = bodyFactory.makeBoxPolyBody(10,1,1.6f, 5.7f, BodyFactory.STONE, BodyType.DynamicBody,true);
+        b2dbody.body = bodyFactory.makeBoxPolyBody(10,1,1.875f, 5.687f, BodyFactory.STONE, BodyType.DynamicBody,true);
         b2dbody.body.setSleepingAllowed(false); // don't allow unit to sleep or it wil sleep through
         // set object position (x,y,z) z used to define draw order 0 first drawn
 
         Animation anim = new Animation(0.2f,atlas.findRegions("Nick_walk"));
         anim.setPlayMode(Animation.PlayMode.LOOP);
-        animCom.animations.put(StateComponent.STATE_NORMAL, anim);
-        animCom.animations.put(StateComponent.STATE_MOVING, anim);
-        animCom.animations.put(StateComponent.STATE_JUMPING, anim);
+        animCom.animations.put(StateComponent.STATE_NORMAL, new Animation(0, atlas.findRegion("Nick_front")));
+        animCom.animations.put(StateComponent.STATE_MOVING_RIGHT, anim);
+        animCom.animations.put(StateComponent.STATE_MOVING_LEFT, anim); //todo развернуть анимацию
+        animCom.animations.put(StateComponent.STATE_JUMPING, new Animation(2, atlas.findRegions("Nick_jump")));
         animCom.animations.put(StateComponent.STATE_FALLING, anim);
         animCom.animations.put(StateComponent.STATE_HIT, anim);
 
 
         position.position.set(10,1,0);
         texture.region = atlas.findRegion("Nick_front");
-        texture.offsetY = 0.5f;
+        texture.offsetY = 0.1f;
         type.type = TypeComponent.PLAYER;
         stateCom.set(StateComponent.STATE_NORMAL);
         b2dbody.body.setUserData(entity);

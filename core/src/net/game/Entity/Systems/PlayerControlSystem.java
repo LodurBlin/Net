@@ -45,8 +45,12 @@ public class PlayerControlSystem extends IteratingSystem{
                 state.set(StateComponent.STATE_NORMAL);
                 System.out.println("setting to normal");
             }
-            if(b2body.body.getLinearVelocity().x != 0 && state.get() != StateComponent.STATE_MOVING){
-                state.set(StateComponent.STATE_MOVING);
+            if(b2body.body.getLinearVelocity().x > 0 && state.get() != StateComponent.STATE_MOVING_RIGHT){
+                state.set(StateComponent.STATE_MOVING_RIGHT);
+                System.out.println("setting to moving");
+            }
+            if(b2body.body.getLinearVelocity().x < 0 && state.get() != StateComponent.STATE_MOVING_LEFT){
+                state.set(StateComponent.STATE_MOVING_LEFT);
                 System.out.println("setting to moving");
             }
         }
@@ -76,7 +80,7 @@ public class PlayerControlSystem extends IteratingSystem{
         }
 
         if(controller.up &&
-                (state.get() == StateComponent.STATE_NORMAL || state.get() == StateComponent.STATE_MOVING)){
+                (state.get() == StateComponent.STATE_NORMAL || state.get() == StateComponent.STATE_MOVING_LEFT ||state.get() == StateComponent.STATE_MOVING_RIGHT)){
             b2body.body.applyLinearImpulse(0, 12f * b2body.body.getMass() , b2body.body.getWorldCenter().x,b2body.body.getWorldCenter().y, true);
             state.set(StateComponent.STATE_JUMPING);
             player.onPlatform = false;

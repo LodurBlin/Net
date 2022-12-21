@@ -30,7 +30,7 @@ Nick_jump
   size: 46, 85
   orig: 46, 85
   offset: 0, 0
-  index: -1
+  index: 1
 Nick_front
   rotate: false
   xy: 2003, 1955
@@ -41,59 +41,59 @@ Nick_front
 Nick_walk
   rotate: false
   xy: 1477, 620
-  size: 32, 91
-  orig: 32, 91
+  size: 30, 91
+  orig: 30, 91
   offset: 0, 0
-  index: 4
+  index: 0
 Nick_walk
   rotate: false
   xy: 1, 19
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
-  index: 5
-Nick_walk
-  rotate: false
-  xy: 2003, 1862
-  size: 29, 91
-  orig: 29, 91
-  offset: 0, 0
-  index: 0
-Nick_walk
-  rotate: false
-  xy: 1477, 530
-  size: 32, 88
-  orig: 32, 88
-  offset: 0, 0
   index: 1
 Nick_walk
   rotate: false
-  xy: 1511, 620
-  size: 29, 91
-  orig: 29, 91
+  xy: 2003, 1862
+  size: 30, 91
+  orig: 30, 91
   offset: 0, 0
   index: 2
 Nick_walk
   rotate: false
-  xy: 2003, 1769
-  size: 29, 91
-  orig: 29, 91
+  xy: 1477, 527
+  size: 30, 91
+  orig: 30, 91
   offset: 0, 0
   index: 3
+Nick_walk
+  rotate: false
+  xy: 1509, 620
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 4
+Nick_walk
+  rotate: false
+  xy: 2003, 1769
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 5
 Nick_profile
   rotate: false
-  xy: 1477, 436
+  xy: 1477, 433
   size: 26, 92
   orig: 26, 92
   offset: 0, 0
   index: -1
-Nick_prejump
+Nick_jump
   rotate: false
-  xy: 1511, 530
+  xy: 1509, 530
   size: 27, 88
   orig: 27, 88
   offset: 0, 0
-  index: -1
+  index: 0
 Masha
   rotate: false
   xy: 49, 131
@@ -103,44 +103,37 @@ Masha
   index: -1
 Masha
   rotate: false
-  xy: 1542, 645
+  xy: 1541, 645
   size: 32, 66
   orig: 32, 66
   offset: 0, 0
   index: 0
 Masha
   rotate: false
-  xy: 1505, 462
+  xy: 83, 131
   size: 32, 66
   orig: 32, 66
   offset: 0, 0
   index: 1
 Peppa
   rotate: false
-  xy: 83, 134
+  xy: 1575, 648
   size: 32, 63
   orig: 32, 63
   offset: 0, 0
   index: -1
 Peppa
   rotate: false
-  xy: 1576, 648
+  xy: 117, 134
   size: 32, 63
   orig: 32, 63
   offset: 0, 0
   index: 0
 Peppa
   rotate: false
-  xy: 117, 134
+  xy: 1609, 648
   size: 32, 63
   orig: 32, 63
-  offset: 0, 0
-  index: 1
-Vrag
-  rotate: false
-  xy: 1610, 677
-  size: 34, 34
-  orig: 34, 34
   offset: 0, 0
   index: 1
 Vrag
@@ -149,10 +142,17 @@ Vrag
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
+  index: 1
+Vrag
+  rotate: false
+  xy: 1643, 677
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
   index: 2
 tileset
   rotate: false
-  xy: 1646, 706
+  xy: 49, 124
   size: 48, 5
   orig: 48, 5
   offset: 0, 0

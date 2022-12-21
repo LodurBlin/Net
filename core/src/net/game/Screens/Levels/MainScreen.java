@@ -17,6 +17,7 @@ import net.game.Entity.Systems.*;
 import net.game.Utils.DFUtils;
 import net.game.Utils.LevelFactory;
 
+import static net.game.Utils.Constants.SPPM;
 import static net.game.Utils.Constants.Screens.*;
 
 
@@ -55,7 +56,7 @@ public class MainScreen implements Screen {
         engine.addSystem(renderingSystem);
         // not a fan of splitting batch into rendering and particles, but I like the separation of the systems
         engine.addSystem(particleSystem); // particle get drawns on top so should be placed after normal rendering
-        engine.addSystem(new PhysicsDebugSystem(lvlFactory.world, renderingSystem.getCamera()));
+        engine.addSystem(new PhysicsDebugSystem(lvlFactory.world, renderingSystem.getCamera())); //ДЕБАГИ
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new SteeringSystem());
         engine.addSystem(new PlayerControlSystem(controller));
@@ -72,8 +73,8 @@ public class MainScreen implements Screen {
         lvlFactory.createBackground();
 
 
-        int wallWidth = (int) (1*RenderingSystem.PPM);
-        int wallHeight = (int) (60*RenderingSystem.PPM);
+        int wallWidth = (int) (1*SPPM);
+        int wallHeight = (int) (60*SPPM);
         TextureRegion wallRegion = DFUtils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
         lvlFactory.createWalls(wallRegion); //TODO make some damn images for this stuff
     }
@@ -135,9 +136,10 @@ public class MainScreen implements Screen {
         player = lvlFactory.createPlayer(cam);
         lvlFactory.createFloor();
         lvlFactory.createWaterFloor();
+        lvlFactory.createBackground();
 
-        int wallWidth = (int) (1*RenderingSystem.PPM);
-        int wallHeight = (int) (60*RenderingSystem.PPM);
+        int wallWidth = (int) (1*SPPM);
+        int wallHeight = (int) (60*SPPM);
         TextureRegion wallRegion = DFUtils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
         lvlFactory.createWalls(wallRegion); //TODO make some damn images for this stuff
 

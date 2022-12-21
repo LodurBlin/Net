@@ -9,6 +9,8 @@ public class StateComponent implements Component, Poolable {
     public static final int STATE_FALLING = 2;
     public static final int STATE_MOVING = 3;
     public static final int STATE_HIT = 4;
+    public static final int STATE_MOVING_RIGHT = 5;
+    public static final int STATE_MOVING_LEFT = 6;
 
     private int state = 0;
     public float time = 0.0f;

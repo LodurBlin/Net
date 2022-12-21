@@ -39,5 +39,15 @@ public class AnimationSystem extends IteratingSystem {
 
         state.time += deltaTime;
     }
+    public void flipAnimation(Entity entity, float deltaTime){
+        AnimationComponent ani = am.get(entity);
+        StateComponent state = sm.get(entity);
+        if(ani.animations.containsKey(state.get())){
+            TextureComponent tex = tm.get(entity);
+            TextureRegion r = (TextureRegion) ani.animations.get(state.get()).getKeyFrame(state.time, state.isLooping);
+            r.flip(true, false);
+            tex.region = r;
+        }
+    }
 }
 
