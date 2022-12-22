@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
-import net.game.Controllers.Keyboard;
+import net.game.Controllers.MyKeyboard;
 import net.game.Entity.Components.B2dBodyComponent;
 import net.game.Entity.Components.PlayerComponent;
 import net.game.Entity.Components.StateComponent;
@@ -15,11 +15,11 @@ public class PlayerControlSystem extends IteratingSystem{
     ComponentMapper<PlayerComponent> pm;
     ComponentMapper<B2dBodyComponent> bodm;
     ComponentMapper<StateComponent> sm;
-    Keyboard controller;
+    MyKeyboard controller;
 
 
     @SuppressWarnings("unchecked")
-    public PlayerControlSystem(Keyboard keyCon) {
+    public PlayerControlSystem(MyKeyboard keyCon) {
         super(Family.all(PlayerComponent.class).get());
         controller = keyCon;
         pm = ComponentMapper.getFor(PlayerComponent.class);

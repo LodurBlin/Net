@@ -10,13 +10,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import net.game.Controllers.Keyboard;
+import net.game.Controllers.MyKeyboard;
 import net.game.CoolGame;
 import net.game.Entity.Components.PlayerComponent;
 import net.game.Entity.Systems.*;
 import net.game.Utils.DFUtils;
 import net.game.Utils.LevelFactory;
-
 import static net.game.Utils.Constants.SPPM;
 import static net.game.Utils.Constants.Screens.*;
 
@@ -24,11 +23,10 @@ import static net.game.Utils.Constants.Screens.*;
 public class MainScreen implements Screen {
     private CoolGame parent;
     private OrthographicCamera cam;
-    private Keyboard controller;
     private SpriteBatch sb;
     private PooledEngine engine;
     private LevelFactory lvlFactory;
-
+    private MyKeyboard controller;
     private Entity player;
 
     /*
@@ -39,7 +37,7 @@ public class MainScreen implements Screen {
         parent = box2dTutorial;
         //parent.assMan.queueAddSounds();
         //parent.assMan.manager.finishLoading();
-        controller = new Keyboard();
+        controller = new MyKeyboard();
         engine = new PooledEngine();
         // next guide - changed this to atlas
         lvlFactory = new LevelFactory(engine,parent.assMan);
