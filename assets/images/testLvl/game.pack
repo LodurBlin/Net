@@ -199,7 +199,7 @@ Vrag
   orig: 34, 34
   offset: 0, 0
   index: 2
-bullet
+question
   rotate: false
   xy: 606, 148
   size: 32, 32
@@ -213,23 +213,30 @@ tileset
   orig: 48, 5
   offset: 0, 0
   index: -1
-tile
+bullet
   rotate: false
   xy: 1923, 212
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 0
+  index: -1
 tile
   rotate: false
   xy: 534, 128
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
-  index: 1
+  index: 0
 tile
   rotate: false
   xy: 640, 164
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: 1
+tile
+  rotate: false
+  xy: 1923, 194
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -241,22 +248,15 @@ filter: Nearest,Nearest
 repeat: none
 water
   rotate: false
-  xy: 1, 1029
+  xy: 1, 515
   size: 1920, 512
   orig: 1920, 512
   offset: 0, 0
   index: 2
 floor
   rotate: false
-  xy: 1, 515
+  xy: 1, 1
   size: 1912, 512
   orig: 1912, 512
-  offset: 0, 0
-  index: -1
-Generic_error_message
-  rotate: false
-  xy: 1, 1
-  size: 736, 512
-  orig: 736, 512
   offset: 0, 0
   index: -1
