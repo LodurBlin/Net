@@ -39,6 +39,7 @@ public class AnimationSystem extends IteratingSystem {
 
         state.time += deltaTime;
     }
+    /*
     public void flipAnimation(Entity entity, float deltaTime){
         AnimationComponent ani = am.get(entity);
         StateComponent state = sm.get(entity);
@@ -49,5 +50,7 @@ public class AnimationSystem extends IteratingSystem {
             tex.region = r;
         }
     }
+
+     */
 }
 

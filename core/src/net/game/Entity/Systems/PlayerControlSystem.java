@@ -35,7 +35,7 @@ public class PlayerControlSystem extends IteratingSystem{
         player.cam.position.y = b2body.body.getPosition().y;
 
 
-        if(b2body.body.getLinearVelocity().y > 0 && state.get() != StateComponent.STATE_FALLING){
+        if(b2body.body.getLinearVelocity().y < 0 && state.get() != StateComponent.STATE_FALLING){
             state.set(StateComponent.STATE_FALLING);
             System.out.println("setting to Falling");
         }
@@ -57,13 +57,13 @@ public class PlayerControlSystem extends IteratingSystem{
 
         // make player teleport higher
         if(player.onSpring){
-            //b2body.body.applyLinearImpulse(0, 175f, b2body.body.getWorldCenter().x,b2body.body.getWorldCenter().y, true);
+            b2body.body.applyLinearImpulse(0, 175f, b2body.body.getWorldCenter().x,b2body.body.getWorldCenter().y, true);
 
             //lvlFactory.makeParticleEffect(ParticleEffectManager.SMOKE, b2body.body.getPosition().x, b2body.body.getPosition().y);
 
             // move player
             b2body.body.setTransform(b2body.body.getPosition().x, b2body.body.getPosition().y+ 10, b2body.body.getAngle());
-            //state.set(StateComponent.STATE_JUMPING);
+            state.set(StateComponent.STATE_JUMPING);
             player.onSpring = false;
         }
 
@@ -79,7 +79,7 @@ public class PlayerControlSystem extends IteratingSystem{
             b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 0, 0.1f),b2body.body.getLinearVelocity().y);
         }
 
-        if(controller.up &&
+        if(controller.up && state.get()!= StateComponent.STATE_JUMPING &&
                 (state.get() == StateComponent.STATE_NORMAL || state.get() == StateComponent.STATE_MOVING_LEFT ||state.get() == StateComponent.STATE_MOVING_RIGHT)){
             b2body.body.applyLinearImpulse(0, 12f * b2body.body.getMass() , b2body.body.getWorldCenter().x,b2body.body.getWorldCenter().y, true);
             state.set(StateComponent.STATE_JUMPING);

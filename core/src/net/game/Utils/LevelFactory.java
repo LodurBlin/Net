@@ -305,12 +305,14 @@ public class LevelFactory {
         // set object position (x,y,z) z used to define draw order 0 first drawn
 
         Animation anim = new Animation(0.2f,atlas.findRegions("Nick_walk"));
+        Animation flippedAnim = new Animation(0.2f,atlas.findRegions("Nick_walk_left"));
+
         anim.setPlayMode(Animation.PlayMode.LOOP);
         animCom.animations.put(StateComponent.STATE_NORMAL, new Animation(0, atlas.findRegion("Nick_front")));
         animCom.animations.put(StateComponent.STATE_MOVING_RIGHT, anim);
-        animCom.animations.put(StateComponent.STATE_MOVING_LEFT, anim); //todo развернуть анимацию
-        animCom.animations.put(StateComponent.STATE_JUMPING, new Animation(2, atlas.findRegions("Nick_jump")));
-        animCom.animations.put(StateComponent.STATE_FALLING, anim);
+        animCom.animations.put(StateComponent.STATE_MOVING_LEFT, flippedAnim);
+        animCom.animations.put(StateComponent.STATE_JUMPING, new Animation(2f, atlas.findRegions("Nick_jump")));
+        animCom.animations.put(StateComponent.STATE_FALLING, new Animation(0f, atlas.findRegions("Nick_falling")));
         animCom.animations.put(StateComponent.STATE_HIT, anim);
 
 

@@ -31,65 +31,114 @@ Nick_jump
   orig: 46, 85
   offset: 0, 0
   index: 1
-Nick_front
+Nick_falling
   rotate: false
   xy: 2003, 1955
   size: 34, 92
   orig: 34, 92
   offset: 0, 0
   index: -1
-Nick_walk
+Nick_front
   rotate: false
-  xy: 1477, 620
-  size: 30, 91
-  orig: 30, 91
+  xy: 1477, 619
+  size: 34, 92
+  orig: 34, 92
   offset: 0, 0
-  index: 0
+  index: -1
 Nick_walk
   rotate: false
   xy: 1, 19
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
-  index: 1
+  index: 0
 Nick_walk
   rotate: false
   xy: 2003, 1862
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
+  index: 1
+Nick_walk
+  rotate: false
+  xy: 1477, 526
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
   index: 2
 Nick_walk
   rotate: false
-  xy: 1477, 527
+  xy: 1513, 620
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 3
 Nick_walk
   rotate: false
-  xy: 1509, 620
+  xy: 2003, 1769
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 4
 Nick_walk
   rotate: false
-  xy: 2003, 1769
+  xy: 1477, 433
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 5
+Nick_walk_left
+  rotate: false
+  xy: 1545, 620
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 0
+Nick_walk_left
+  rotate: false
+  xy: 2003, 1676
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 1
+Nick_walk_left
+  rotate: false
+  xy: 1477, 340
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 2
+Nick_walk_left
+  rotate: false
+  xy: 1577, 620
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 3
+Nick_walk_left
+  rotate: false
+  xy: 2003, 1583
+  size: 30, 91
+  orig: 30, 91
+  offset: 0, 0
+  index: 4
+Nick_walk_left
+  rotate: false
+  xy: 1477, 247
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 5
 Nick_profile
   rotate: false
-  xy: 1477, 433
+  xy: 2003, 1489
   size: 26, 92
   orig: 26, 92
   offset: 0, 0
   index: -1
 Nick_jump
   rotate: false
-  xy: 1509, 530
+  xy: 1609, 623
   size: 27, 88
   orig: 27, 88
   offset: 0, 0
@@ -103,7 +152,7 @@ Masha
   index: -1
 Masha
   rotate: false
-  xy: 1541, 645
+  xy: 1638, 645
   size: 32, 66
   orig: 32, 66
   offset: 0, 0
@@ -117,7 +166,7 @@ Masha
   index: 1
 Peppa
   rotate: false
-  xy: 1575, 648
+  xy: 1672, 648
   size: 32, 63
   orig: 32, 63
   offset: 0, 0
@@ -131,7 +180,7 @@ Peppa
   index: 0
 Peppa
   rotate: false
-  xy: 1609, 648
+  xy: 1706, 648
   size: 32, 63
   orig: 32, 63
   offset: 0, 0
@@ -145,7 +194,7 @@ Vrag
   index: 1
 Vrag
   rotate: false
-  xy: 1643, 677
+  xy: 1740, 677
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
@@ -173,7 +222,7 @@ tile
   index: 1
 tile
   rotate: false
-  xy: 2003, 1751
+  xy: 2031, 1565
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
