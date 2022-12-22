@@ -1,6 +1,8 @@
-package net.game.Entity.Systems;
+package net.game.Future;
 
-public class FactorialCalculation implements GetRes{
+import net.game.Future.GetRes;
+
+public class FactorialCalculation implements GetRes {
     private int res;
     FactorialCalculation(int n){
         res = calculate(n);

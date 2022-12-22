@@ -1,4 +1,5 @@
 package net.game.Future;
+/*
 import java.io.*;
 
 public class Riddle implements Serializable {
@@ -39,3 +40,5 @@ public class Riddle implements Serializable {
         System.out.println(renat);
     }
 }
+
+ */
