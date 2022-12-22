@@ -14,7 +14,7 @@ import static net.game.Utils.Constants.*;
 public class CoolGame extends Game {
     //TODO add remove body from world code
     //TODO remove items off screen
-    //TODO make enemies die if shot and fall offscreen(off screen should remove from abouve task)
+    //TODO make enemies die if shot and fall offscreen(off screen should remove from above task)
 
 
 
