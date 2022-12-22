@@ -5,225 +5,258 @@ filter: Nearest,Nearest
 repeat: none
 neon_background
   rotate: false
-  xy: 1, 713
+  xy: 1, 696
   size: 2000, 1334
   orig: 2000, 1334
   offset: 0, 0
   index: -1
-floor
+water
   rotate: false
-  xy: 1, 199
-  size: 736, 512
-  orig: 736, 512
+  xy: 1, 182
+  size: 1920, 512
+  orig: 1920, 512
   offset: 0, 0
-  index: -1
-Generic_error_message
+  index: 1
+wall
   rotate: false
-  xy: 739, 199
-  size: 736, 512
-  orig: 736, 512
+  xy: 2003, 110
+  size: 32, 1920
+  orig: 32, 1920
   offset: 0, 0
   index: -1
 Nick_jump
   rotate: false
-  xy: 1, 112
+  xy: 1, 95
   size: 46, 85
   orig: 46, 85
   offset: 0, 0
   index: 1
 Nick_falling
   rotate: false
-  xy: 2003, 1955
+  xy: 1923, 602
   size: 34, 92
   orig: 34, 92
   offset: 0, 0
   index: -1
 Nick_front
   rotate: false
-  xy: 1477, 619
+  xy: 1, 1
   size: 34, 92
   orig: 34, 92
   offset: 0, 0
   index: -1
 Nick_walk
   rotate: false
-  xy: 1, 19
+  xy: 1923, 509
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 0
 Nick_walk
   rotate: false
-  xy: 2003, 1862
+  xy: 1959, 603
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 1
 Nick_walk
   rotate: false
-  xy: 1477, 526
+  xy: 1923, 416
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 2
 Nick_walk
   rotate: false
-  xy: 1513, 620
+  xy: 1923, 323
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 3
 Nick_walk
   rotate: false
-  xy: 2003, 1769
+  xy: 1923, 230
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 4
 Nick_walk
   rotate: false
-  xy: 1477, 433
+  xy: 49, 89
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 5
 Nick_walk_left
   rotate: false
-  xy: 1545, 620
+  xy: 81, 89
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 0
 Nick_walk_left
   rotate: false
-  xy: 2003, 1676
+  xy: 113, 89
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 1
 Nick_walk_left
   rotate: false
-  xy: 1477, 340
+  xy: 145, 89
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 2
 Nick_walk_left
   rotate: false
-  xy: 1577, 620
+  xy: 177, 89
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 3
 Nick_walk_left
   rotate: false
-  xy: 2003, 1583
+  xy: 209, 89
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 4
 Nick_walk_left
   rotate: false
-  xy: 1477, 247
+  xy: 241, 89
   size: 30, 91
   orig: 30, 91
   offset: 0, 0
   index: 5
 Nick_profile
   rotate: false
-  xy: 2003, 1489
+  xy: 273, 88
   size: 26, 92
   orig: 26, 92
   offset: 0, 0
   index: -1
 Nick_jump
   rotate: false
-  xy: 1609, 623
+  xy: 301, 92
   size: 27, 88
   orig: 27, 88
   offset: 0, 0
   index: 0
 Masha
   rotate: false
-  xy: 49, 131
+  xy: 330, 114
   size: 32, 66
   orig: 32, 66
   offset: 0, 0
   index: -1
 Masha
   rotate: false
-  xy: 1638, 645
+  xy: 364, 114
   size: 32, 66
   orig: 32, 66
   offset: 0, 0
   index: 0
 Masha
   rotate: false
-  xy: 83, 131
+  xy: 398, 114
   size: 32, 66
   orig: 32, 66
   offset: 0, 0
   index: 1
 Peppa
   rotate: false
-  xy: 1672, 648
+  xy: 432, 117
   size: 32, 63
   orig: 32, 63
   offset: 0, 0
   index: -1
 Peppa
   rotate: false
-  xy: 117, 134
+  xy: 466, 117
   size: 32, 63
   orig: 32, 63
   offset: 0, 0
   index: 0
 Peppa
   rotate: false
-  xy: 1706, 648
+  xy: 500, 117
   size: 32, 63
   orig: 32, 63
   offset: 0, 0
   index: 1
 Vrag
   rotate: false
-  xy: 151, 163
+  xy: 534, 146
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: 1
 Vrag
   rotate: false
-  xy: 1740, 677
+  xy: 570, 146
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: 2
+bullet
+  rotate: false
+  xy: 606, 148
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 tileset
   rotate: false
-  xy: 49, 124
+  xy: 330, 107
   size: 48, 5
   orig: 48, 5
   offset: 0, 0
   index: -1
 tile
   rotate: false
-  xy: 1, 1
+  xy: 1923, 212
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 0
 tile
   rotate: false
-  xy: 19, 1
+  xy: 534, 128
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 1
 tile
   rotate: false
-  xy: 2031, 1565
+  xy: 640, 164
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: 2
+
+game2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+water
+  rotate: false
+  xy: 1, 1029
+  size: 1920, 512
+  orig: 1920, 512
+  offset: 0, 0
+  index: 2
+floor
+  rotate: false
+  xy: 1, 515
+  size: 1912, 512
+  orig: 1912, 512
+  offset: 0, 0
+  index: -1
+Generic_error_message
+  rotate: false
+  xy: 1, 1
+  size: 736, 512
+  orig: 736, 512
+  offset: 0, 0
+  index: -1

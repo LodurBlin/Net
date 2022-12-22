@@ -1,5 +1,6 @@
 package net.game.Entity.Systems;
 
+import com.badlogic.gdx.audio.Sound;
 import net.game.Entity.Components.BulletComponent;
 import net.game.Entity.Components.CollisionComponent;
 import net.game.Entity.Components.EnemyComponent;
@@ -11,17 +12,24 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import net.game.Utils.B2dAssetManager;
 
 public class CollisionSystem  extends IteratingSystem {
     ComponentMapper<CollisionComponent> cm;
     ComponentMapper<PlayerComponent> pm;
+    private Sound hurt;
+    private Sound shocked;
 
     @SuppressWarnings("unchecked")
-    public CollisionSystem() {
+    public CollisionSystem(B2dAssetManager assMan) {
         super(Family.all(CollisionComponent.class).get());
 
         cm = ComponentMapper.getFor(CollisionComponent.class);
         pm = ComponentMapper.getFor(PlayerComponent.class);
+        assMan.queueAddSounds();
+        assMan.manager.finishLoading();
+        hurt = assMan.manager.get(assMan.hurtSound);
+        shocked = assMan.manager.get(assMan.shockedSound);
     }
 
     @Override
@@ -46,26 +54,31 @@ public class CollisionSystem  extends IteratingSystem {
                             pl.isDead = true;
                             int score = (int) pl.cam.position.y;
                             System.out.println("Score = "+ score);
+                            hurt.play();
                             break;
                         case TypeComponent.SCENERY:
                             //do player hit scenery thing
                             pm.get(entity).onPlatform = true;
                             System.out.println("player hit scenery");
+                            shocked.play();
                             break;
                         case TypeComponent.SPRING:
                             //do player hit other thing
                             pm.get(entity).onSpring = true;
                             System.out.println("player hit spring: bounce up");
+                            shocked.play();
                             break;
                         case TypeComponent.OTHER:
                             //do player hit other thing
                             System.out.println("player hit other");
+                            hurt.play();
                             break;
                         case TypeComponent.BULLET:
                             // TODO add mask so player can't hit themselves
                             BulletComponent bullet = Mapper.bulletCom.get(collidedEntity);
                             if(bullet.owner != BulletComponent.Owner.PLAYER){ // can't shoot own team
                                 pl.isDead = true;
+                                hurt.play();
                             }
                             System.out.println("Player just shot. bullet in player atm");
                             break;

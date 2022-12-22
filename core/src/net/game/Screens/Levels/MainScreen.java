@@ -6,6 +6,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,7 +17,6 @@ import net.game.Entity.Components.PlayerComponent;
 import net.game.Entity.Systems.*;
 import net.game.Utils.DFUtils;
 import net.game.Utils.LevelFactory;
-import static net.game.Utils.Constants.SPPM;
 import static net.game.Utils.Constants.Screens.*;
 
 
@@ -28,6 +28,7 @@ public class MainScreen implements Screen {
     private LevelFactory lvlFactory;
     private MyKeyboard controller;
     private Entity player;
+    private Music music;
 
     /*
     Здесь вы можете видеть, что мы начали использовать класс DFUtils для создания некоторых
@@ -35,11 +36,12 @@ public class MainScreen implements Screen {
      */
     public MainScreen(CoolGame box2dTutorial) {
         parent = box2dTutorial;
-        //parent.assMan.queueAddSounds();
-        //parent.assMan.manager.finishLoading();
+        parent.assMan.queueAddMusic();
+        parent.assMan.manager.finishLoading();
+        music = parent.assMan.manager.get(parent.assMan.playingSong);
+        music.play();
         controller = new MyKeyboard();
         engine = new PooledEngine();
-        // next guide - changed this to atlas
         lvlFactory = new LevelFactory(engine,parent.assMan);
 
 
@@ -54,8 +56,8 @@ public class MainScreen implements Screen {
         engine.addSystem(renderingSystem);
         // not a fan of splitting batch into rendering and particles, but I like the separation of the systems
         engine.addSystem(particleSystem); // particle get drawns on top so should be placed after normal rendering
-        engine.addSystem(new PhysicsDebugSystem(lvlFactory.world, renderingSystem.getCamera())); //ДЕБАГИ
-        engine.addSystem(new CollisionSystem());
+        //engine.addSystem(new PhysicsDebugSystem(lvlFactory.world, renderingSystem.getCamera())); //ДЕБАГИ
+        engine.addSystem(new CollisionSystem(parent.assMan));
         engine.addSystem(new SteeringSystem());
         engine.addSystem(new PlayerControlSystem(controller));
         player = lvlFactory.createPlayer(cam);
@@ -69,12 +71,7 @@ public class MainScreen implements Screen {
         lvlFactory.createFloor();
         lvlFactory.createWaterFloor();
         lvlFactory.createBackground();
-
-
-        int wallWidth = (int) (1*SPPM);
-        int wallHeight = (int) (60*SPPM);
-        TextureRegion wallRegion = DFUtils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
-        lvlFactory.createWalls(wallRegion); //TODO make some damn images for this stuff
+        lvlFactory.createWalls();
     }
 
 
@@ -96,10 +93,11 @@ public class MainScreen implements Screen {
             DFUtils.log("YOU DIED : back to menu you go!");
             parent.lastScore = (int) pc.cam.position.y;
             parent.changeScreen(ENDGAME);
+            music.pause();
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)){
             parent.changeScreen(MENU);
-            //music.pause();
+            music.pause();
         }
 
     }
@@ -135,11 +133,7 @@ public class MainScreen implements Screen {
         lvlFactory.createFloor();
         lvlFactory.createWaterFloor();
         lvlFactory.createBackground();
-
-        int wallWidth = (int) (1*SPPM);
-        int wallHeight = (int) (60*SPPM);
-        TextureRegion wallRegion = DFUtils.makeTextureRegion(wallWidth, wallHeight, "222222FF");
-        lvlFactory.createWalls(wallRegion); //TODO make some damn images for this stuff
+        lvlFactory.createWalls();
 
         // reset controller controls (fixes bug where controller stuck on directrion if died in that position)
         controller.left = false;
@@ -149,6 +143,7 @@ public class MainScreen implements Screen {
         controller.isMouse1Down = false;
         controller.isMouse2Down = false;
         controller.isMouse3Down = false;
+        music.play();
 
     }
 }
